@@ -4,7 +4,11 @@ import path from 'path';
 
 var Service = ({log, output}) => {
     return (pathArg, callback) => {
-        var absolutePath = path.resolve(pathArg);
+        var absolutePath = pathArg;
+        if(!path.isAbsolute(pathArg)){
+            path.resolve(pathArg);
+        }
+        
         log("Processing for:" + absolutePath);
         
         var processPath = function(pathArg, tag){
