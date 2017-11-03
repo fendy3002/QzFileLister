@@ -1,8 +1,8 @@
 {
   "name": "@fendy3002/file-lister",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
-  "main": "dist/exec.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --require babel-core/register --require babel-polyfill",
     "compile": "./node_modules/.bin/babel src --out-dir dist",
