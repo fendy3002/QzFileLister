@@ -18,5 +18,11 @@ var _output2 = _interopRequireDefault(_output);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Service = function Service() {};
+var Service = function Service() {
+    return {
+        reader: _index2.default,
+        readerLog: _log2.default,
+        readerOutput: _output2.default
+    };
+};
 exports.default = Service;
