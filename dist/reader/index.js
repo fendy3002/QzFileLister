@@ -16,14 +16,25 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
+var _log = require('./log.js');
+
+var _log2 = _interopRequireDefault(_log);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Service = function Service(_ref) {
-    var log = _ref.log,
-        output = _ref.output;
+var Service = function Service() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        log = _ref.log;
 
+    if (!log) {
+        log = (0, _log2.default)({});
+    }
     return function (pathArg, callback) {
-        var absolutePath = _path2.default.resolve(pathArg);
+        var absolutePath = pathArg;
+        if (!_path2.default.isAbsolute(pathArg)) {
+            _path2.default.resolve(pathArg);
+        }
+
         log("Processing for:" + absolutePath);
 
         var processPath = function processPath(pathArg, tag) {
@@ -70,7 +81,7 @@ var Service = function Service(_ref) {
                 return obj.size * 1;
             });
 
-            output({
+            callback({
                 size: size.toFixed(2),
                 data: result
             });

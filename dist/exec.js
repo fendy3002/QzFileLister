@@ -35,8 +35,9 @@ exports.default = function () {
     } else {
         var path = options.path;
         (0, _index2.default)({
-            log: (0, _log2.default)(options),
-            output: (0, _output2.default)(options)
-        })(path);
+            log: (0, _log2.default)(options)
+        })(path, function (result) {
+            (0, _output2.default)(options)(result);
+        });
     }
 };

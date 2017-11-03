@@ -19,8 +19,9 @@ export default () => {
     else{
         var path = options.path;
         reader({
-            log: readerLog(options), 
-            output: readerOutput(options)
-        })(path);
+            log: readerLog(options)
+        })(path, (result) => {
+            readerOutput(options)(result);
+        });
     }
 }

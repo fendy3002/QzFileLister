@@ -1,8 +1,12 @@
 import fs from 'fs';
 import lo from 'lodash';
 import path from 'path';
+import readerLog from './log.js';
 
-var Service = ({log, output}) => {
+var Service = ({log} = {}) => {
+    if(!log){
+        log = readerLog({});
+    }
     return (pathArg, callback) => {
         var absolutePath = pathArg;
         if(!path.isAbsolute(pathArg)){
@@ -57,7 +61,7 @@ var Service = ({log, output}) => {
                 return obj.size * 1;
             });
 
-            output({
+            callback({
                 size: size.toFixed(2),
                 data: result
             });
