@@ -7,6 +7,7 @@ import readerLog from './reader/log.js';
 
 const optionDefinitions = [
     { name: 'path', type: String, alias: 'p',multiple: false, defaultOption: true},
+    { name: 'pretty', type: Boolean, multiple: false},
     { name: 'out', type: String, alias: 'o',multiple: false },
     { name: 'log', type: String,multiple: false }
 ];
