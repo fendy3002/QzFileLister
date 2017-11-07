@@ -26,7 +26,7 @@ var _log2 = _interopRequireDefault(_log);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var optionDefinitions = [{ name: 'path', type: String, alias: 'p', multiple: false, defaultOption: true }, { name: 'out', type: String, alias: 'o', multiple: false }, { name: 'log', type: String, multiple: false }];
+var optionDefinitions = [{ name: 'path', type: String, alias: 'p', multiple: false, defaultOption: true }, { name: 'pretty', type: Boolean, multiple: false }, { name: 'out', type: String, alias: 'o', multiple: false }, { name: 'log', type: String, multiple: false }];
 var options = (0, _commandLineArgs2.default)(optionDefinitions);
 
 exports.default = function () {

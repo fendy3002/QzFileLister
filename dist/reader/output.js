@@ -13,11 +13,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Service = function Service(options) {
     if (!options.out) {
         return function (result, callback) {
-            console.log(result);
+            if (options.pretty) {
+                console.log(JSON.stringify(result, null, 2));
+            } else {
+                console.log(JSON.stringify(result));
+            }
         };
     } else {
         return function (result, callback) {
-            _fs2.default.writeFile(options.out, JSON.stringify(result, null, 2), callback);
+            if (options.pretty) {
+                _fs2.default.writeFile(options.out, JSON.stringify(result, null, 2), callback);
+            } else {
+                _fs2.default.writeFile(options.out, JSON.stringify(result), callback);
+            }
         };
     }
 };
