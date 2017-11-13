@@ -13,11 +13,20 @@ var Service = (options) => {
     }
     else{
         return (result, callback) => {
+            var fsOption = {
+                encoding: "utf8",
+                mode: 0o666,
+                flag: 'w'
+            };
+
+            if(options.mode){ fsOption.mode = options.mode; }
+            if(options.encoding){ fsOption.encoding = options.encoding; }
+            if(options.flag){ fsOption.flag = options.flag; }
             if(options.pretty){
-                fs.writeFile(options.out, JSON.stringify(result, null, 2), callback);
+                fs.writeFile(options.out, JSON.stringify(result, null, 2), fsOption, callback);
             }
             else{
-                fs.writeFile(options.out, JSON.stringify(result), callback);
+                fs.writeFile(options.out, JSON.stringify(result), fsOption, callback);
             }
         };
     }

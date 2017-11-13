@@ -19,10 +19,11 @@ export default () => {
     }
     else{
         var path = options.path;
+        var log = readerLog(options);
         reader({
-            log: readerLog(options)
+            log: log
         })(path, (result) => {
-            readerOutput(options)(result);
+            readerOutput(options)(result, (err) => { if(err){ log(null, err); } });
         });
     }
 }

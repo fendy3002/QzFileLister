@@ -34,10 +34,15 @@ exports.default = function () {
         console.log("Usage: node exec.js <path-to-list>");
     } else {
         var path = options.path;
+        var log = (0, _log2.default)(options);
         (0, _index2.default)({
-            log: (0, _log2.default)(options)
+            log: log
         })(path, function (result) {
-            (0, _output2.default)(options)(result);
+            (0, _output2.default)(options)(result, function (err) {
+                if (err) {
+                    log(null, err);
+                }
+            });
         });
     }
 };

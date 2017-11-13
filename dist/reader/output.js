@@ -21,10 +21,25 @@ var Service = function Service(options) {
         };
     } else {
         return function (result, callback) {
+            var fsOption = {
+                encoding: "utf8",
+                mode: 438,
+                flag: 'w'
+            };
+
+            if (options.mode) {
+                fsOption.mode = options.mode;
+            }
+            if (options.encoding) {
+                fsOption.encoding = options.encoding;
+            }
+            if (options.flag) {
+                fsOption.flag = options.flag;
+            }
             if (options.pretty) {
-                _fs2.default.writeFile(options.out, JSON.stringify(result, null, 2), callback);
+                _fs2.default.writeFile(options.out, JSON.stringify(result, null, 2), fsOption, callback);
             } else {
-                _fs2.default.writeFile(options.out, JSON.stringify(result), callback);
+                _fs2.default.writeFile(options.out, JSON.stringify(result), fsOption, callback);
             }
         };
     }
