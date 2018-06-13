@@ -3,19 +3,19 @@ import lo from 'lodash';
 import path from 'path';
 import readerLog from './log.js';
 
-var Service = ({log} = {}) => {
+let Service = ({log} = {}) => {
     if(!log){
         log = readerLog({});
     }
-    return (pathArg, callback) => {
-        var absolutePath = pathArg;
+    return (pathArg, callback) => (resolve, reject) => {
+        let absolutePath = pathArg;
         if(!path.isAbsolute(pathArg)){
             path.resolve(pathArg);
         }
         
         log("Processing for:" + absolutePath);
         
-        var processPath = function(pathArg, tag){
+        let processPath = function(pathArg, tag){
             return new Promise((resolve, reject) => {
                 fs.lstat(pathArg, (err, stats) => {
                     if(err){
@@ -38,11 +38,11 @@ var Service = ({log} = {}) => {
             });
         };
 
-        var trace = function(pathArg, tag){
+        let trace = function(pathArg, tag){
             return new Promise((resolve, reject) => {
-                var promises = [];
+                let promises = [];
                 fs.readdir(pathArg, (err, files) => {
-                    for(var i = 0; i < files.length; i++){
+                    for(let i = 0; i < files.length; i++){
                         let file = files[i];
                         let filepath = path.join(pathArg, file);
                         let newTag = tag.concat([file]);
@@ -57,11 +57,11 @@ var Service = ({log} = {}) => {
         };
 
         trace(absolutePath, []).then((result) => {
-            var size = lo.sumBy(result, (obj) => {
+            let size = lo.sumBy(result, (obj) => {
                 return obj.size * 1;
             });
 
-            callback({
+            resolve({
                 size: size.toFixed(2),
                 data: result
             });

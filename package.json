@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --require babel-core/register --require babel-polyfill",
+    "test": "./node_modules/.bin/mocha --require babel-core/register --require babel-polyfill --trace-warnings",
     "compile": "./node_modules/.bin/babel src --out-dir dist",
     "compileWatch": "./node_modules/.bin/babel src --out-dir dist --watch"
   },
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/fendy3002/QzFileLister#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-polyfill": "^6.23.0",
@@ -39,7 +40,6 @@
     "style-loader": "^0.13.1"
   },
   "dependencies": {
-    "babel-core": "^6.14.0",
     "babel-polyfill": "^6.23.0",
     "command-line-args": "^4.0.7",
     "json5": "^0.5.1",
